@@ -28,7 +28,7 @@ python -m venv "name_of_the_ve"
 
 Activate the virtual enviroment (For windows):
 ```sh
-source env/Scripts/activate
+source "name_of_the_ve"/Scripts/activate
 ```
 
 Install the requeriments for this proyect:
