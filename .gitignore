@@ -1,4 +1,7 @@
 env
 __pycache__
-database.db
+*.db
 .dist
+.pytest_cache
+file
+*.coverage

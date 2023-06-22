@@ -1,4 +1,4 @@
-# shopping-web-app
+# shopping-web-app-backend
 A simple web page to buy clothes and accessories with users's database.
 
 ## Pre-requisites
@@ -23,17 +23,22 @@ py get-pip.py
 
 First, create the Virtual enviroment:
 ```sh
-python -m venv "name_of_the_ve"
+python -m venv env
 ```
 
 Activate the virtual enviroment (For windows):
 ```sh
-source "name_of_the_ve"/Scripts/activate
+source env/Scripts/activate
 ```
 
 Install the requeriments for this proyect:
+For Windows:
 ```sh
-pip install requeriments.txt
+pip install -r requirements.txt
+```
+For Linux:
+```sh
+pip install requirements.txt
 ```
 
 Then, initialize the server:

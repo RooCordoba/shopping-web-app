@@ -1,11 +1,11 @@
 import re
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Form
 from ...utils.users_functions import user_exist, create_user
 
 router = APIRouter()
 
 @router.post("/register_user")
-def register_user(name, lastname, email, password):
+def register_user(name : str = Form(...), lastname: str = Form(...), email : str = Form(...) , password : str = Form(...)):
     if user_exist(email):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="User already exist")
     elif not("@" in email):
@@ -19,4 +19,8 @@ def register_user(name, lastname, email, password):
     elif not re.search("[a-z]", password) or (not re.search("[A-Z]", password)) or (not re.search("[0-9]", password)):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= "La contraseña debe tener minimo una mayuscula, una minuscula y un numero")
     create_user(name, lastname, email, password)
-    raise HTTPException(status_code=200, detail="User Created")
+    raise HTTPException(status_code=status.HTTP_201_CREATED, detail="User Created")
+
+@router.post("/mytest/")
+async def mytest(numero: str = Form(...)):
+    raise HTTPException(status_code=status.HTTP_201_CREATED, detail=numero)

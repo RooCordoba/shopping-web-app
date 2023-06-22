@@ -4,9 +4,6 @@ from src.endpoints import router
 
 app = FastAPI()
 
-db.connect()
-db.create_tables([User])
-
 app.include_router(router)
 
 @app.get("/")
