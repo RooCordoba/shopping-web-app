@@ -3,5 +3,5 @@ __pycache__
 *.db
 .dist
 .pytest_cache
-file
+trash_testing_file
 *.coverage

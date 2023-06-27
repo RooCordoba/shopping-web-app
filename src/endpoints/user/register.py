@@ -20,7 +20,3 @@ def register_user(name : str = Form(...), lastname: str = Form(...), email : str
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= "La contraseña debe tener minimo una mayuscula, una minuscula y un numero")
     create_user(name, lastname, email, password)
     raise HTTPException(status_code=status.HTTP_201_CREATED, detail="User Created")
-
-@router.post("/mytest/")
-async def mytest(numero: str = Form(...)):
-    raise HTTPException(status_code=status.HTTP_201_CREATED, detail=numero)
