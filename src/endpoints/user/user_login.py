@@ -1,12 +1,12 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Form
 from peewee import DoesNotExist
-from ...utils.users_functions import get_user_by_email, user_login 
+from ...utils.users_functions import get_user_by_email, user_login, user_exist
 
 router = APIRouter()
 
 
-@router.get("/user_login")
-def login(email, password):
+@router.post("/user_login")
+def login(email: str = Form(...), password: str = Form(...)):
     try:
         if get_user_by_email(email).password == password:
             user_login(email)

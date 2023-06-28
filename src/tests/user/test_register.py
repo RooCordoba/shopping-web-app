@@ -1,6 +1,6 @@
 from fastapi import status
 
-def test_register_user(client):
+def test_register_user_ok(client):
     response = client.post('/register_user', data={"name":"GoodName", "lastname":"GoodLastname","email":"goodemail@mail.com","password":"GooDpaSsword1"})
     assert response.json() == {"detail":"User Created"}
     assert response.status_code == status.HTTP_201_CREATED
@@ -9,6 +9,13 @@ def test_user_exists(client, mocked_user1):
     response = client.post('/register_user', data={"name":"GoodName", "lastname":"GoodLastname","email":"mocked@email","password":"GooDpaSsword1"})
     assert response.json() == {'detail': "User already exist"}
     assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+def test_invalid_email(client):
+    response = client.post('/register_user', data={"name":"GoodName", "lastname":"GoodLastname","email":"badEmail","password":"GooDpaSsword1"})
+    assert response.json() == {'detail': "Invalid Email"}
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+# Tests for name and lastname
 
 def test_short_name(client):
     response = client.post('/register_user', data={"name":"no", "lastname":"GoodLastname","email":"goodemail@mail.com","password":"GooDpaSsword1"})
@@ -29,6 +36,8 @@ def test_long_last_name(client):
     response = client.post('/register_user', data={"name":"GoodName", "lastname":"aVeryveryveryveryveryveryverylonglastname","email":"goodemail@mail.com","password":"GooDpaSsword1"})
     assert response.json() == {'detail': "Apellido debe contener entre 3 y 20 caracteres"}
     assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+# Tests for Password
 
 def test_short_password(client):
     response = client.post('/register_user', data={"name":"GoodName", "lastname":"GoodLastname","email":"goodemail@mail.com","password":"short"})

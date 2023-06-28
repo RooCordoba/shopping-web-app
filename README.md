@@ -45,3 +45,9 @@ Then, initialize the server:
 ```sh
 uvicorn main:app --reload
 ```
+
+## Runing The Tests
+In the root folder of the proyect and in the Virtual Enviroment run:
+```
+coverage run -m pytest && coverage report -m
+```
