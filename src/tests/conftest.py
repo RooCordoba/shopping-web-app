@@ -3,7 +3,6 @@ import pytest
 from fastapi.testclient import TestClient
 from peewee import SqliteDatabase
 from src.db import User
-import os
 
 MODELS = [User]
 
@@ -22,6 +21,19 @@ def db_test():
     yield
     test_database.drop_tables(MODELS)
     test_database.close()
+
+@pytest.fixture(autouse=False)
+def mocked_user1():
+    user = User.create(id=1,
+                name="Moked_name",
+                lastname="mockedLastName",
+                email="mocked@email",
+                password="asdASD123",
+                is_logged_in = 0)
+    user.save()
+
+
+
 
 """ @pytest.fixture(scope="session", autouse=True)
 def cleanUp(request):
