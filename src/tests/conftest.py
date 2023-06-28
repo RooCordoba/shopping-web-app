@@ -32,7 +32,15 @@ def mocked_user1():
                 is_logged_in = 0)
     user.save()
 
-
+@pytest.fixture(autouse=False)
+def mocked_user2_logged_in():
+    user = User.create(id=2,
+                name="Moked_name",
+                lastname="mockedLastName",
+                email="mocked2@email",
+                password="asdASD123",
+                is_logged_in = 1)
+    user.save()
 
 
 """ @pytest.fixture(scope="session", autouse=True)

@@ -17,3 +17,12 @@ def user_login(email):
     user = get_user_by_email(email)
     user.is_logged_in = True
     user.save()
+
+def userLogout(id):
+    user = get_user_by_id(id)
+    user.is_logged_in = False
+    user.save()
+
+def get_user_by_id(id):
+    user = User.get(User.id == id)
+    return user
